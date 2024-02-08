@@ -11,6 +11,11 @@ import { loadData } from "./services/Menu.js";
 import Router from "./services/Router.js";
 import Store from "./services/Store.js"; // put .js if import doesnt work
 
+//importing all our web components so JS could parse them and be aware when we use them
+import { DetailsPage } from "./components/DetailsPage.js";
+import { MenuPage } from "./components/MenuPage.js";
+import { OrderPage } from "./components/OrderPage.js";
+
 /**Since Store is imported as a module below is a workaround to have access
  * to Store via window object
  * 

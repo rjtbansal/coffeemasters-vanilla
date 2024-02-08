@@ -36,16 +36,16 @@ const Router = {
     let pageElement = null; 
 
     if (route === '/') {
-      pageElement = document.createElement('h1');
-      pageElement.textContent = 'Menu';
+      // replacing with our web component
+      pageElement = document.createElement('menu-page');
     }
     else if (route === '/order') {
-      pageElement = document.createElement('h1');
-      pageElement.textContent = 'Your Order';
+      // replacing with our web component
+      pageElement = document.createElement('order-page');
     }
     else if (route.startsWith('/product-')) {
-      pageElement = document.createElement('h1');
-      pageElement.textContent = "Details";
+      // replacing with our web component
+      pageElement = document.createElement('details-page');
       // we expecting dynamic ids like /product-1, /product-2 and so on
       // grabbing the string after hyphen (-)
       const paramId = route.substring(route.lastIndexOf('-') + 1);
