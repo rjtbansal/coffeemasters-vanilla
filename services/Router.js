@@ -50,7 +50,7 @@ const Router = {
       // grabbing the string after hyphen (-)
       const paramId = route.substring(route.lastIndexOf('-') + 1);
       // we are storing this as data-id in our h1 element we creating
-      pageElement.dataset.id = paramId;
+      pageElement.dataset.productId = paramId;
     }
 
     if(pageElement) {

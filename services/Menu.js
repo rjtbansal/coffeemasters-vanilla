@@ -10,7 +10,7 @@ export async function getProductById(productId) {
   }
   for (const category of myapp.store.menu) {
     for (const product of category.products) {
-      if (product.id === productId) {
+      if (product.id == productId) {
         return product;
       }
     }
