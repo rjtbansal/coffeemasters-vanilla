@@ -15,6 +15,7 @@ import Store from "./services/Store.js"; // put .js if import doesnt work
 import { DetailsPage } from "./components/DetailsPage.js";
 import { MenuPage } from "./components/MenuPage.js";
 import { OrderPage } from "./components/OrderPage.js";
+import { ProductItem } from "./components/ProductItem.js";
 
 /**Since Store is imported as a module below is a workaround to have access
  * to Store via window object

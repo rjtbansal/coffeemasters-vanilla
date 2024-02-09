@@ -33,7 +33,38 @@ export class MenuPage extends HTMLElement {
     const content = template.content.cloneNode(true);
     // add this clone as a child of the root of this component
     this.root.appendChild(content);
-  
+    // now we are listening to our own event that we created for store
+    window.addEventListener('appMenuChanged', () => {
+      this.render();
+    });
+  }
+
+  render() {
+    if (myapp.store.menu) {
+      // always cleanup innerHTML because we are setting it in else
+      this.root.querySelector('#menu').innerHTML = '';
+      for (let category of myapp.store.menu) {
+        const liCategory = document.createElement('li');
+        liCategory.innerHTML = `
+        <h3>${category.name}</h3>
+        <ul class='category'>
+        
+        </ul>
+        `;
+        this.root.querySelector('#menu').appendChild(liCategory);
+
+        category.products.forEach(product => {
+          // we are using our custom web component called product-item here
+          const item = document.createElement('product-item');
+          // sending stringified JSON to our component as data-product
+          item.dataset.product = JSON.stringify(product);
+          liCategory.querySelector('.category').appendChild(item);
+        })
+      }
+    } 
+    else {
+      this.root.querySelector('#menu').innerHTML = 'Loading....';
+    }
   }
 };
 // this is how we are defining web component

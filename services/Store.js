@@ -27,6 +27,7 @@ const ProxiedStore = new Proxy(Store, {
     if (property === 'cart') {
       window.dispatchEvent(new Event('appCartChanged'));
     }
+    return true;
   }
 });
 
