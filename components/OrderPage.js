@@ -1,4 +1,12 @@
 export class OrderPage extends HTMLElement {
+
+  // user is private object prefixed with # to identify as private
+  #user = {
+    name: '',
+    phone: '',
+    email: '',
+  }
+
   constructor() {
     super();
 
@@ -56,7 +64,48 @@ export class OrderPage extends HTMLElement {
                 <p class='price-total'>$${total.toFixed(2)}</p>
             </li>                
         `;  
+      
+      //setting form bindings here
+      // our form is in shadow DOM so dont try using document.querySelector
+      this.setFormBindings(this.root.querySelector('form'));  
     }
+  }
+
+  setFormBindings(form) {
+    /**
+     * Instead of click we listen to submit so that user can be on any device
+     * and hit the virtual keyboard go button or hit enter on desktop
+     */
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert(`You have submitted the form with name ${this.#user.name}, 
+      phone ${this.#user.phone} and email ${this.#user.email}
+      `);
+      // clear the form after submitting
+      this.#user.name = '';
+      this.#user.email = '';
+      this.#user.phone = '';
+    });
+    // set double data binding
+    this.#user = new Proxy(this.#user, {
+      set(target, property, value) {
+        target[property] = value;
+        /**You can access a particular form control in the returned collection by using either an index or the element's name or id attributes.
+         * https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
+         */
+        form.elements[property].value = value;
+        return true;
+      }
+    });
+    // below we are doing 2nd way data binding: when form changes also update value of objects
+    // converting to array since form.elements returns HTMLFormsControlCollection which wont have forEach
+    Array.from(form.elements).forEach(formElement => {
+      // listening to when any form element changes
+      formElement.addEventListener('change', () => {
+        // once changes we update the value in our user object with form value
+        this.#user[formElement.name] = formElement.value;
+      });
+    })
   }
 }
 

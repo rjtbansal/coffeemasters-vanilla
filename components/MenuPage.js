@@ -37,6 +37,8 @@ export class MenuPage extends HTMLElement {
     window.addEventListener('appMenuChanged', () => {
       this.render();
     });
+    // also rendering when menu has not changed but we are trying to navigate back to that page
+    this.render();
   }
 
   render() {
