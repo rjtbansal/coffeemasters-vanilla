@@ -1,3 +1,5 @@
+import { addToCart } from "../services/Order.js";
+
 export class ProductItem extends HTMLElement {
   constructor() {
     super();
@@ -16,16 +18,17 @@ export class ProductItem extends HTMLElement {
     this.querySelector('.price').textContent = `$${price.toFixed(2)}`;
     this.querySelector('img').src = `data/images/${image}`; 
     this.querySelector('a').addEventListener('click', event => {
-      event.preventDefault();
       // we only want the click to happen when target is button
       // currentTarget -> a
       // target -> button below
       // if we dont explicitly check it will click for entire <a>
-      if (event.target.tagName.toLowerCase === 'button') {
-        // to do
+      if (event.target.tagName.toLowerCase() == 'button') {
+        addToCart(product.id);
       } else {
         myapp.router.go(`/product-${product.id}`);
       }
+      event.preventDefault();
+
     })    
   }
 };

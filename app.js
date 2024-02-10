@@ -31,3 +31,13 @@ window.addEventListener('DOMContentLoaded', () => {
   loadData();
   myapp.router.init();
 });
+
+window.addEventListener('appCartChanged', () => {
+  // cart changed so we update the badge count
+  const badge = document.getElementById("badge");
+  const quantity = myapp.store.cart.reduce((acc, item) => (
+    acc + item.quantity
+  ), 0);
+  badge.textContent = quantity;
+  badge.hidden = quantity == 0;
+});

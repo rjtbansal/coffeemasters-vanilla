@@ -5,7 +5,7 @@ export async function loadData() {
 }
 
 export async function getProductById(productId) {
-  if (myapp.store.menu === null) {
+  if (myapp.store.menu == null) {
     await loadData();
   }
   for (const category of myapp.store.menu) {
