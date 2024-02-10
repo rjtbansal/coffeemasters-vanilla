@@ -24,4 +24,5 @@ export function removeFromCart(productId) {
   myapp.store.cart = myapp.store.cart.filter(cartProduct => (
     cartProduct.product.id != productId
   ));
+  console.log(myapp.store.cart);
 }

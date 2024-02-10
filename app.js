@@ -16,7 +16,7 @@ import { DetailsPage } from "./components/DetailsPage.js";
 import { MenuPage } from "./components/MenuPage.js";
 import { OrderPage } from "./components/OrderPage.js";
 import { ProductItem } from "./components/ProductItem.js";
-
+import { CartItem } from "./components/CartItem.js";
 /**Since Store is imported as a module below is a workaround to have access
  * to Store via window object
  * 
